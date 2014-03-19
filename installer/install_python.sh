@@ -55,10 +55,7 @@ get_python() {
 create_symlink() {
     test -x $PREFIX/bin/python3 && test -x $PREFIX/bin/python || $SUDO ln -s $PREFIX/bin/python3 $PREFIX/bin/python
     test -x $PREFIX/bin/ipython3 && test -x $PREFIX/bin/ipython || $SUDO ln -s $PREFIX/bin/ipython3 $PREFIX/bin/ipython
-}
-
-get_pip() {
-    curl -L https://raw.github.com/pypa/pip/master/contrib/get-pip.py | $SUDO $PREFIX/bin/python
+    test -x $PREFIX/bin/pip3 && test -x $PREFIX/bin/pip || $SUDO ln -s $PREFIX/bin/pip3 $PREFIX/bin/pip
 }
 
 install_python() {
@@ -66,7 +63,6 @@ install_python() {
     test -n "$1" || exit 1
     get_python $*
     create_symlink $*
-    get_pip $*
     python -V
 }
 
