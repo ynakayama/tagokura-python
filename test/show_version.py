@@ -4,6 +4,7 @@
 # Show python modules info and version
 ########################################################################
 
+import sys
 import imp
 
 class PythonModuleInfo:
@@ -45,6 +46,8 @@ def main():
     (options, args) = parser.parse_args()
 
     m = PythonModuleInfo(options)
+    python_version = sys.version
+    print("Python %(python_version)s" %locals())
     m.get_info('IPython')
     m.get_info('cython')
     m.get_info('docutils')
